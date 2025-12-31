@@ -19,15 +19,14 @@ jobs:
       - name: Checkout docs-developer repository
         uses: actions/checkout@v4
         with:
-          repository: flatimage/flatimage-staging
-          token: ${{ secrets.DOCS }}
+          repository: flatimage/flatimage
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
       - name: Build developer documentation with Docker
         run: |
-          cd /home/runner/work/docs-developer-staging/docs-developer-staging
+          cd /home/runner/work/docs-developer/docs-developer
           docker build -f docker/Dockerfile.doxygen -t flatimage-doxygen .
 
       - name: Extract site from Docker container
